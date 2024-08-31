@@ -12,9 +12,9 @@ class Parqueadero {
     }
 
     // Método para agregar un vehículo al parqueadero, buscando el primer piso con espacio
-    public function agregarVehiculo($vehiculo) {
+    public function agregarPiso($vehiculo) {
         foreach ($this->pisos as $piso) {
-            if ($piso->agregarVehiculo1($vehiculo)) {
+            if ($piso->agregarPuesto($vehiculo)) {
                 return true;
             }
         }
@@ -22,9 +22,9 @@ class Parqueadero {
     }
 
     // Método para buscar un vehículo en el parqueadero
-    public function buscarVehiculo($placa) {
+    public function buscarPiso($placa) {
         foreach ($this->pisos as $piso) {
-            $resultado = $piso->buscarVehiculo1($placa);
+            $resultado = $piso->buscarPuesto($placa);
             if ($resultado !== null) {
                 return $resultado;
             }
@@ -33,7 +33,7 @@ class Parqueadero {
     }
     public function mostrarUbicacionCosto($vehiculosBuscar){
         foreach ($vehiculosBuscar as $placa) {
-            $busqueda = $this->buscarVehiculo($placa);
+            $busqueda = $this->buscarPiso($placa);
             
             if ($busqueda !== null) {
 

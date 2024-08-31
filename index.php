@@ -22,20 +22,20 @@ $vehiculo12 = new Vehiculo('HIJ456', 'Volkswagen', 'Gris', 'Julian Rios', '56789
 $vehiculo13 = new Vehiculo('KLM789', 'BMW', 'Verde', 'Esteban Suarez', '234567', '2024-08-30 18:00:00');
 
 // Agregar los vehículos al parqueadero
-$parqueadero->agregarVehiculo($vehiculo1);
+$parqueadero->agregarPiso($vehiculo1);
 
-$parqueadero->agregarVehiculo($vehiculo2);
-$parqueadero->agregarVehiculo($vehiculo3);
-$parqueadero->agregarVehiculo($vehiculo4);
-$parqueadero->agregarVehiculo($vehiculo5);
-$parqueadero->agregarVehiculo($vehiculo6);
-$parqueadero->agregarVehiculo($vehiculo7);
-$parqueadero->agregarVehiculo($vehiculo8);
-$parqueadero->agregarVehiculo($vehiculo9);
-$parqueadero->agregarVehiculo($vehiculo10);
-$parqueadero->agregarVehiculo($vehiculo11);
-$parqueadero->agregarVehiculo($vehiculo12);
-$parqueadero->agregarVehiculo($vehiculo13);
+$parqueadero->agregarPiso($vehiculo2);
+$parqueadero->agregarPiso($vehiculo3);
+$parqueadero->agregarPiso($vehiculo4);
+$parqueadero->agregarPiso($vehiculo5);
+$parqueadero->agregarPiso($vehiculo6);
+$parqueadero->agregarPiso($vehiculo7);
+$parqueadero->agregarPiso($vehiculo8);
+$parqueadero->agregarPiso($vehiculo9);
+$parqueadero->agregarPiso($vehiculo10);
+$parqueadero->agregarPiso($vehiculo11);
+$parqueadero->agregarPiso($vehiculo12);
+$parqueadero->agregarPiso($vehiculo13);
 
 // Registrar la salida de los vehículos
 $vehiculo1->registrarSalida('2024-08-30 10:00:00');
