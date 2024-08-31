@@ -9,7 +9,7 @@ class Vehiculo {
     protected $horaIngreso;
     protected $horaSalida;
 
-    public function __construct($placa, $marca, $color, $nombreCliente, $documentoCliente, $horaIngreso) {
+    public function __construct(string $placa, $marca, $color, $nombreCliente, $documentoCliente, $horaIngreso) {
         $this->placa = $placa;
         $this->marca = $marca;
         $this->color = $color;
