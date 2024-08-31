@@ -3,8 +3,11 @@ require_once './clases/Parqueadero.php';
 
 $parqueadero = new Parqueadero();
 
+
+
 // Agregar vehículos
 $vehiculo1 = new Vehiculo('ABC123', 'Toyota', 'Rojo', 'Juan Perez', '123456', '2024-08-30 06:00:00');
+
 $vehiculo2 = new Vehiculo('DEF456', 'Honda', 'Azul', 'Maria Garcia', '789012', '2024-08-30 09:00:00');
 $vehiculo3 = new Vehiculo('GHI789', 'Ford', 'Negro', 'Carlos Lopez', '345678', '2024-08-30 07:30:00');
 $vehiculo4 = new Vehiculo('JKL012', 'Chevrolet', 'Blanco', 'Ana Ruiz', '901234', '2024-08-30 08:00:00');
@@ -20,6 +23,7 @@ $vehiculo13 = new Vehiculo('KLM789', 'BMW', 'Verde', 'Esteban Suarez', '234567',
 
 // Agregar los vehículos al parqueadero
 $parqueadero->agregarVehiculo($vehiculo1);
+
 $parqueadero->agregarVehiculo($vehiculo2);
 $parqueadero->agregarVehiculo($vehiculo3);
 $parqueadero->agregarVehiculo($vehiculo4);
@@ -35,6 +39,7 @@ $parqueadero->agregarVehiculo($vehiculo13);
 
 // Registrar la salida de los vehículos
 $vehiculo1->registrarSalida('2024-08-30 10:00:00');
+
 $vehiculo2->registrarSalida('2024-08-30 15:00:00');
 $vehiculo3->registrarSalida('2024-08-30 10:30:00');
 $vehiculo4->registrarSalida('2024-08-30 13:00:00');
@@ -50,19 +55,22 @@ $vehiculo13->registrarSalida('2024-08-30 21:00:00');
 
 // Buscar y calcular el costo para cada vehículo
 $vehiculosBuscar = [
-    'ABC123', 'DEF456', 'GHI789', 'JKL012', 'MNO345',
-    'PQR678', 'STU901', 'VWX234', 'YZA567', 'BCD890',
-    'EFG123', 'HIJ456', 'KLM789'
+    'ABC123',
+    'DEF456',
+    'GHI789',
+    'JKL012',
+    'MNO345',
+    'PQR678',
+    'STU901',
+    'VWX234',
+    'YZA567',
+    'BCD890',
+    'EFG123',
+    'HIJ456',
+    'KLM789'
+    
 ];
 
-foreach ($vehiculosBuscar as $placa) {
-    $busqueda = $parqueadero->buscarVehiculo($placa);
-    if ($busqueda !== null) {
-        echo "Vehículo encontrado en el piso " . $busqueda['piso'] . ", puesto " . $busqueda['puesto'] . ".<br>";
-        echo "Placa: " . $busqueda['vehiculo']->getPlaca() . "<br>";
-        echo "Costo del parqueo: $" . $busqueda['vehiculo']->calcularCosto() . " USD<br><br><hr>";
-    } else {
-        echo "Vehículo no encontrado.<br><br><hr>";
-    }
-}
+$parqueadero->mostrarUbicacionCosto($vehiculosBuscar)
+
 ?>

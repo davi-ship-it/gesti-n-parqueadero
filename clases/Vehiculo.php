@@ -33,9 +33,38 @@ class Vehiculo {
         return round($horas) * 2; // $2 USD por hora
     }
 
-    public function getPlaca() {
-        return $this->placa;
+    // Métodos GET para acceder a las propiedades del vehículo
+
+    public function getInfoVehiculo(){
+        $arrVehiculo = [
+            "Placa" => $this->placa,
+            "Marca" => $this->marca,
+            "Color" => $this->color,
+            "Nombre de Cliente" => $this->nombreCliente,
+            "Documento del Cliente" => $this->documentoCliente,
+            "Hora de Ingreso" => $this->horaIngreso,
+            "Hora de Salida" => $this->horaSalida
+        ];
+        
+        return $arrVehiculo;
+      
     }
+    public function getImprimirInfoVehiculo() {
+        $arrVehiculo = $this->getInfoVehiculo();
+    
+        foreach ($arrVehiculo as $atributo => $valor) {
+            echo "<b><p>$atributo:</p></b>";
+            echo "<p>$valor</p>";
+           
+        }
+    }
+
+    public function getPlaca() {
+        return $this->placa; 
+        }
+
 }
+
+
 
 ?>

@@ -9,7 +9,7 @@ class Piso {
         $this->puestos = [];
     }
 
-    public function agregarVehiculo($vehiculo) {
+    public function agregarVehiculo1($vehiculo) {
         if (count($this->puestos) < 10) {
             $this->puestos[] = $vehiculo;
             return true;
@@ -17,14 +17,23 @@ class Piso {
         return false;
     }
 
-    public function buscarVehiculo($placa) {
+    public function buscarVehiculo1($placa) {
         foreach ($this->puestos as $index => $vehiculo) {
-            if ($vehiculo->getPlaca() === $placa) { // Aquí se llama a getPlaca()
-                return ['piso' => $this->numeroPiso, 'puesto' => $index + 1, 'vehiculo' => $vehiculo];
+            if ($vehiculo->getPlaca() === $placa) { 
+                // Renderiza la información del vehículo si se encuentra
+                $vehiculo->getImprimirInfoVehiculo();
+                return [
+                    'piso' => $this->numeroPiso, 
+                    'puesto' => $index + 1,
+                    'vehiculo' => $vehiculo
+                ];
+
+            
             }
         }
-        return null;
+        return null; // Vehículo no encontrado
     }
+    
 
     
 }
