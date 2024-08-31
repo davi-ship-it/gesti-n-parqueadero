@@ -21,8 +21,6 @@ class Parqueadero {
         return false; // No hay espacios disponibles en todo el parqueadero
     }
 
-    // Método para retirar un vehículo del parqueadero y reorganizar los puestos
-   
 
     // Método para buscar un vehículo en el parqueadero
     public function buscarVehiculo($placa) {
