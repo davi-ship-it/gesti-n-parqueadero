@@ -1,6 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Parqueadero</title>
+</head>
+<body>
+    <form method="POST" action="">
+        <label for="vehiculos">Ingrese las placas de los vehículos (separados por comas):</label>
+        <input type="text" id="vehiculos" name="vehiculos" placeholder="Ejemplo: ABC123,DEF456" required>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+
 <?php
 require_once './clases/Parqueadero.php';
 
+
+    /*Placas:
+    
+     'ABC123',
+    'DEF456',
+    'GHI789',
+    'JKL012',
+    'MNO345',
+    'PQR678',
+    'STU901',
+    'VWX234',
+    'YZA567',
+    'BCD890',
+    'EFG123',
+    'HIJ456',
+    'KLM789' */
 $parqueadero = new Parqueadero();
 
 
@@ -54,23 +89,14 @@ $vehiculo12->registrarSalida('2024-08-30 20:00:00');
 $vehiculo13->registrarSalida('2024-08-30 21:00:00');
 
 // Buscar y calcular el costo para cada vehículo
-$vehiculosBuscar = [
-    'ABC123',
-    'DEF456',
-    'GHI789',
-    'JKL012',
-    'MNO345',
-    'PQR678',
-    'STU901',
-    'VWX234',
-    'YZA567',
-    'BCD890',
-    'EFG123',
-    'HIJ456',
-    'KLM789'
-    
-];
 
-$parqueadero->mostrarUbicacionCosto($vehiculosBuscar)
+$vehiculosBuscar = null;
 
-?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $vehiculosInput = $_POST['vehiculos'];
+
+    $vehiculosBuscar = array_map('trim', explode(',', $vehiculosInput));}
+
+$parqueadero->mostrarUbicacionCosto($vehiculosBuscar);
+
+
