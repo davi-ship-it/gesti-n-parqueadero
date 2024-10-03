@@ -1,5 +1,6 @@
 <?php
-require_once("Vehiculo.php");
+require_once 'Vehiculo.php';
+
 class Piso {
     protected $numeroPiso;
     protected $puestos;
@@ -19,23 +20,16 @@ class Piso {
 
     public function buscarPuesto($placa) {
         foreach ($this->puestos as $index => $vehiculo) {
-            if ($vehiculo->getPlaca() === $placa) { 
-                // Renderiza la información del vehículo si se encuentra
-                $vehiculo->getImprimirInfoVehiculo();
+            if ($vehiculo->getPlaca() === $placa) {
                 return [
-                    'piso' => $this->numeroPiso, 
+                    'piso' => $this->numeroPiso,
                     'puesto' => $index + 1,
                     'vehiculo' => $vehiculo
                 ];
-
-            
             }
         }
-        return null; // Vehículo no encontrado
+        return null;
     }
-    
-
-    
 }
 
-?>
+
