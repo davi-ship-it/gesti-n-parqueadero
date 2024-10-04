@@ -50,6 +50,8 @@ class Vehiculo {
     public function getPlaca() {
         return $this->placa; 
     }
+
+ 
 }
 
 

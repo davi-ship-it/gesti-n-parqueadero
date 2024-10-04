@@ -56,19 +56,40 @@ while (true) {
             break;
         
         case 2:
-            // Retirar vehículo
+            // Retirar vehículo con confirmación
             echo "Ingrese la placa del vehículo a retirar: ";
             $placa = trim(fgets(STDIN));
             $resultado = $parqueadero->buscarPiso($placa);
             
             if ($resultado !== null) {
-                echo "Ingrese la hora de salida (formato: YYYY-MM-DD HH:MM:SS): ";
-                $horaSalida = trim(fgets(STDIN));
                 $vehiculo = $resultado['vehiculo'];
-                $vehiculo->registrarSalida($horaSalida);
-                
+                // Mostrar los datos del vehículo
+                echo "===== Información del Vehículo =====\n";
+                $vehiculo->mostrarDatos();
                 echo "Ubicación: Piso " . $resultado['piso'] . " Puesto " . $resultado['puesto'] . "\n";
-                echo "Costo del parqueo: $" . $vehiculo->calcularCosto() . " USD\n";
+                
+                // Preguntar si desea retirar el vehículo
+                echo "¿Desea retirar el vehículo? (s/n): ";
+                $confirmar = strtolower(trim(fgets(STDIN)));
+                
+                if ($confirmar === 's') {
+                    // Pedir la hora de salida
+                    echo "Ingrese la hora de salida (formato: YYYY-MM-DD HH:MM:SS): ";
+                    $horaSalida = trim(fgets(STDIN));
+                    $vehiculo->registrarSalida($horaSalida);
+                    
+                    // Calcular y mostrar el costo del parqueo
+                    echo "Costo del parqueo: $" . $vehiculo->calcularCosto() . " USD\n";
+                    
+                    // Eliminar el vehículo automáticamente
+                    if ($parqueadero->eliminarVehiculoPorPlaca($placa)) {
+                        echo "Vehículo retirado correctamente.\n";
+                    } else {
+                        echo "Error al retirar el vehículo.\n";
+                    }
+                } else {
+                    echo "Operación cancelada. El vehículo no ha sido retirado.\n";
+                }
             } else {
                 echo "Vehículo con placa $placa no encontrado.\n";
             }
@@ -82,5 +103,4 @@ while (true) {
             echo "Opción no válida. Intente nuevamente.\n";
     }
 }
-
 

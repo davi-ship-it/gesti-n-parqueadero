@@ -1,33 +1,60 @@
 <?php
-require_once 'Piso.php';
+require_once("Vehiculo.php");
 
 class Parqueadero {
-    protected $pisos = [];
+    private $pisos;
 
     public function __construct() {
-        for ($i = 1; $i <= 4; $i++) {
-            $this->pisos[$i] = new Piso($i);
-        }
+        $this->pisos = [
+            1 => array_fill(0, 10, null), 
+            2 => array_fill(0, 10, null), 
+            3 => array_fill(0, 10, null), 
+            4 => array_fill(0, 10, null), 
+        ];
     }
 
     public function agregarPiso($vehiculo) {
-        foreach ($this->pisos as $piso) {
-            if ($piso->agregarPuesto($vehiculo)) {
-                return true;
+        // Buscar el primer puesto vacío en cualquier piso
+        foreach ($this->pisos as $piso => $puestos) {
+            foreach ($puestos as $indice => $puesto) {
+                if ($puesto === null) {
+                    // Asignar el vehículo al puesto vacío
+                    $this->pisos[$piso][$indice] = $vehiculo;
+                    return true; // Registro exitoso
+                }
             }
         }
-        return false;
+        return false; // Si no hay espacio
     }
 
     public function buscarPiso($placa) {
-        foreach ($this->pisos as $piso) {
-            $resultado = $piso->buscarPuesto($placa);
-            if ($resultado !== null) {
-                return $resultado;
+        // Buscar el vehículo por placa en el parqueadero
+        foreach ($this->pisos as $piso => $puestos) {
+            foreach ($puestos as $indice => $vehiculo) {
+                if ($vehiculo !== null && $vehiculo->getPlaca() === $placa) {
+                    return [
+                        'piso' => $piso,
+                        'puesto' => $indice + 1, // Retornar el puesto (usamos +1 para evitar índice 0)
+                        'vehiculo' => $vehiculo
+                    ];
+                }
             }
         }
-        return null;
+        return null; // No se encontró el vehículo
+    }
+
+    public function eliminarVehiculoPorPlaca($placa) {
+        // Eliminar el vehículo del parqueadero
+        foreach ($this->pisos as $piso => $puestos) {
+            foreach ($puestos as $indice => $vehiculo) {
+                if ($vehiculo !== null && $vehiculo->getPlaca() === $placa) {
+                    $this->pisos[$piso][$indice] = null; // Eliminar el vehículo
+                    return true;
+                }
+            }
+        }
+        return false; // Si no se encontró el vehículo
     }
 }
 
-?>
+
